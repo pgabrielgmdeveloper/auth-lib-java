@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'maven-publish'
+
+
+}
+apply plugin: 'maven-publish'
+
+group = 'online.koymatt-programmer'
+version = '0.0.1'
+
+java {
+	sourceCompatibility = '21'
+}
+
+repositories {
+	mavenCentral()
+}
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			groupId = 'online.koymatt-programmer'
+			artifactId = 'lib-auth'
+			version = '0.0.1'
+			from components.java
+		}
+	}
+}
+
+dependencies {
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.2.3'
+	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '3.2.3'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
